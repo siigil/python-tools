@@ -37,12 +37,10 @@ o = open(sys.argv[2], "wb")
 
 # check if the entry is for video/mp2t content
 for i in j['log']['entries']:
-if i['response']['content']['mimeType'] == "video/mp2t":
-
-# base64 decode content
-c = i['response']['content']['text']
-r = base64.b64decode(c)
-
-# append the chunks to the output file, as .ts is a streaming format & can be concatenated
-o.write(r)
+    if i['response']['content']['mimeType'] == "video/mp2t":
+        # base64 decode content
+        c = i['response']['content']['text']
+        r = base64.b64decode(c)
+        # append the chunks to the output file, as .ts is a streaming format & can be concatenated
+        o.write(r)
 o.close()

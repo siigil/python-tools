@@ -2,7 +2,7 @@
 
 # az-membership-enum.py <list of users>
 import json
-import fileinput
+import sys
 import subprocess
 import json
 
@@ -15,10 +15,10 @@ o = open(output, "a")
 for line in usrs:
 
 	# enumerate user group information from aad
-	usr = line.encode('utf-8').strip()
+	usr = line.encode('utf-8').strip() 
 	print(usr)
 	cmd = ['az', 'ad', 'user', 'get-member-groups', '--id', usr]
-	groups = subprocess.Popen(cmd, stdout=subprocess,PIPE)
+	groups = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 	out, err = groups.communicate()
 	resp = json.loads(out)
 	for i in resp:
